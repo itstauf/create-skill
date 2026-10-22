@@ -4,7 +4,7 @@
 
 This repository is the starting point for a new [Claude Code](https://code.claude.com/docs/en/skills) skill. It contains a skill that walks you through creating another one, a small example you can run, and a scaffold of starter files.
 
-Claude Code loads every folder under `.claude/skills/` that contains a `SKILL.md`.
+Claude Code loads `create-skill` and `example-skill` from `.claude/skills/`. The scaffold is nested inside `create-skill`, so it is not a skill of its own.
 
 ## Quick start
 
@@ -21,7 +21,7 @@ See the example skill without starting Claude Code:
 python3 .claude/skills/example-skill/scripts/hello.py
 ```
 
-That prints a short note. It does not change `templates/note.md`. Pass a name if you want one:
+That prints a short note. It does not change `.claude/skills/example-skill/templates/note.md`. Pass a name if you want one:
 
 ```bash
 python3 .claude/skills/example-skill/scripts/hello.py "Ada"
@@ -30,32 +30,35 @@ python3 .claude/skills/example-skill/scripts/hello.py "Ada"
 Then start Claude Code in this repository and run either command:
 
 - `/example-skill` runs the same script and shows the note.
-- `/create-skill` asks for a name, a description, and the steps, then adds `.claude/skills/<name>/`.
+- `/create-skill` asks for a name, a description, the steps, and whether you need `scripts/` or `templates/`, then adds `.claude/skills/<name>/`. After it finishes, run `/<name>`.
 
-Run `/<name>` to try the skill you just added.
-
-To make a skill by hand instead, copy the scaffold and edit `name` so it matches the folder:
+To make a skill by hand instead:
 
 ```bash
 cp -r .claude/skills/create-skill/scaffold .claude/skills/my-skill-name
 ```
 
-`scaffold/SKILL.md` is the file that copy starts from. Replace `my-skill-name`, the description, the title, and the steps.
+Open `.claude/skills/my-skill-name/SKILL.md`. In this copy, `name` is already `my-skill-name`. Replace the description, the title, and the steps. If you use a different folder name, set `name` to that folder name. Start Claude Code in this repository and run `/my-skill-name`, or `/<folder-name>` if you chose another name.
 
 ## Use it in a repository you already have
 
-Copy the skill folders in. `create-skill` is enough on its own. Copy `example-skill` only if you want the example.
+`create-skill` is enough on its own, because the scaffold is inside that folder. From the root of the other repository:
 
 ```bash
 git clone https://github.com/itstauf/create-skill /tmp/create-skill
 mkdir -p .claude/skills
 cp -r /tmp/create-skill/.claude/skills/create-skill .claude/skills/
+```
+
+Copy the example too only if you want it:
+
+```bash
 cp -r /tmp/create-skill/.claude/skills/example-skill .claude/skills/
 ```
 
 Start Claude Code in that repository and run `/create-skill`.
 
-To have these skills in every repository on your machine, copy the same folders to `~/.claude/skills/` instead.
+For local Claude Code sessions in other projects on this machine, copy the same folders to `~/.claude/skills/` instead. Cowork and cloud sessions do not load skills from that home directory.
 
 ## Requirements
 
@@ -107,4 +110,4 @@ Any scripts or templates a skill needs go in that skill's folder, next to its `S
 
 ## Template repository
 
-GitHub shows **Use this template** after a repository admin turns on **Template repository** under Settings, General. Cloning above works either way.
+GitHub shows **Use this template** after an admin selects **Template repository** in the repository Settings. The clone steps above work either way.

@@ -28,12 +28,12 @@ Create one new skill in the current project. The starter files are in `${CLAUDE_
 
 3. Copy `${CLAUDE_SKILL_DIR}/scaffold` so the new `SKILL.md` lands at `${CLAUDE_PROJECT_DIR}/.claude/skills/<name>/SKILL.md`. Do not leave a nested `scaffold/` folder inside the new skill.
 
-4. Replace that `SKILL.md`. The first line must be `---`. Quote `description` when it contains a colon.
+4. Replace that `SKILL.md`. The first line must be `---`. Use the description from step 1, and quote it when it contains a colon. Turn `<name>` into a short `<Title>` (`summarize-notes` becomes `Summarize notes`).
 
 ```markdown
 ---
 name: <name>
-description: Use when the user asks to ...
+description: <description>
 ---
 
 # <Title>

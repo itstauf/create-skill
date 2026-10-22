@@ -14,7 +14,7 @@ def main():
         sys.stderr.write(f"Missing template: {TEMPLATE}\n")
         return 1
 
-    name = sys.argv[1] if len(sys.argv) > 1 else "there"
+    name = sys.argv[1].strip() if len(sys.argv) > 1 and sys.argv[1].strip() else "there"
     text = TEMPLATE.read_text(encoding="utf-8")
     filled = text.replace("{{when}}", date.today().isoformat()).replace("{{name}}", name)
     sys.stdout.write(filled)
